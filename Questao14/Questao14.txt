@@ -1,0 +1,45 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+// Função para preencher o array com números digitados pelo usuário.
+void inserir(int tam, float num[]){
+  printf("Digite os numeros: \n");
+  for(int i=0; i<tam; i++){
+    scanf("%f", &num[i]);
+  }
+}
+
+// Função utilizada pelo qsort() para comparar os elementos do array
+// A função de comparação recebe dois ponteiros para elementos no array e retorna um valor inteiro negativo, zero ou positivo, dependendo se o primeiro elemento é menor, igual ou maior que o segundo elemento, respectivamente.
+int comparar(const void* a, const void* b){
+  float x = *(float*)a;
+  float y = *(float*)b;
+  if(x < y) return -1;
+  else if(x > y) return 1;
+  else return 0;
+}
+
+// Função principal que vai receber os números digitados pelo usuário
+
+int main() {
+  int tam;
+  float *p;
+
+  printf("Quantos numeros? \n");
+  scanf("%d", &tam);
+
+  p = malloc(tam * sizeof(float));
+
+  inserir(tam, p);
+
+  // Usando a função qsort() para ordenar o array em ordem crescente. A função então reorganiza o array em ordem crescente ou decrescente, usando a função de comparação para comparar os elementos do array e trocá-los de lugar, se necessário.
+  qsort(p, tam, sizeof(float), comparar);
+
+  for(int i=0; i<tam; i++){
+    printf("%.2f ", p[i]);
+  }
+
+  free(p);
+
+  return 0;
+}
