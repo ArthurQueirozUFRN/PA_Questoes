@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+
+int i, j, exp;
+int *p, *q;
+
+exp = i = *&*&j;  //  <-- exp = Expressão que quer ser testada;
+
+printf("%d", exp);
+
+return 0;
+}
+
+// p = i;             --> Funciona!
+// q = &j;            --> Funciona!
+// p = &*&i;          --> Funciona!
+// i = (*&)j;         --> Não funciona!
+// i = *&j;           --> Funciona!
+// i = *&*&j;         --> Funciona!
+// q = *p;            --> Não funciona!
+// i = (*p)++ + *q;   --> Não funciona!
